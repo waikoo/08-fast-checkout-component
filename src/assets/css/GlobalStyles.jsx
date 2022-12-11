@@ -12,6 +12,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   main {
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 `;

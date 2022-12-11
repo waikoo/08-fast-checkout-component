@@ -7,16 +7,53 @@ import Title from './assets/components/Title';
 import Button from './assets/components/Button';
 import Body from './assets/components/Body';
 
+import { useReducer } from 'react';
+import { PreviewOrder } from './assets/css/styled';
+
+const reducer = (uiState, action) => {
+	switch (action.type) {
+		case 'nextBody':
+			return {
+				...uiState,
+				body: uiState.body + 1,
+				completedSteps: [1]
+			};
+		case 'addressIsEdited':
+			return {
+				...uiState,
+				isEditingAddress: true
+			};
+
+		default:
+			return uiState;
+	}
+};
+
 function App() {
+	const [uiState, uiDispatch] = useReducer(reducer, {
+		body: 1,
+		isEditingAddress: false,
+		isCurrentCompleted: false,
+		addNewAddress: false,
+		completedSteps: []
+	});
+
 	return (
 		<div className='App'>
 			<GlobalStyles />
-			<Header>PREVIEW ORDER</Header>
+			<PreviewOrder>
+				<Header />
+			</PreviewOrder>
 			<main>
-				<ProgressBar />
-				<Title>Shipping Method</Title>
-				<Body></Body>
-				<Button>Continue</Button>
+				<ProgressBar
+					completedSteps={uiState.completedSteps}
+					isEditingAddress={uiState.isEditingAddress}
+				/>
+				<Title step={uiState.body}></Title>
+				<Body
+					step={uiState.body}
+					uiState={uiState}
+					uiDispatch={uiDispatch}></Body>
 			</main>
 		</div>
 	);

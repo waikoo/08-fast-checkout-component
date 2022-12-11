@@ -1,18 +1,17 @@
 import React from 'react';
-import { PreviewOrder } from '../css/styled';
 import images from '../images/index_images';
 
 const Header = (props) => {
-	const { children } = props;
+	const { showEditAddress } = props;
 
 	return (
-		<PreviewOrder>
+		<>
 			<img
-				src={images.close}
+				src={showEditAddress ? images.back : images.close}
 				alt='Close order'
 			/>
-			<span>{children}</span>
-		</PreviewOrder>
+			<span id='span'>{showEditAddress ? 'Edit Address' : 'PREVIEW ORDER'}</span>
+		</>
 	);
 };
 
