@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputLabel = (props) => {
-	const { onClick, inputRef, type, name, value, onChange, children, checked } = props;
+	const { onClick, inputRef, type, name, value, onChange, children, checked, method } = props;
 	if (inputRef.value === 'home') inputRef.target.checked = true;
 	return (
 		<label
@@ -12,6 +12,7 @@ const InputLabel = (props) => {
 			<input
 				type={type}
 				name={name}
+				data-method={method}
 				value={value}
 				id={value}
 				onChange={onChange}

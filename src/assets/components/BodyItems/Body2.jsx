@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SBody2 } from '../../css/styled';
 import images from '../../images/index_images';
 import AddressForm from '../AddressForm';
 
 const Body2 = (props) => {
-	const [showModal, setShowModal] = useState(false);
-	const { uiState, uiDispatch, shipping, dispatchShipping, step } = props;
+	const { uiState, uiDispatch, shipping, step, handleAddressChange } = props;
 	const showNewAddressForm = () => {
 		uiDispatch({ type: 'addressIsEdited' });
-		setShowModal(true);
-		// ! setShowModal(false) on button click when form is done
 	};
 
 	return (
-		<SBody2 onClick={showNewAddressForm}>
-			{showModal ? (
+		<SBody2>
+			{uiState.isEditingAddress ? (
 				<AddressForm
 					uiState={uiState}
 					uiDispatch={uiDispatch}
 					shipping={shipping}
-					dispatchShipping={dispatchShipping}
 					step={step}
+					handleAddressChange={handleAddressChange}
 				/>
 			) : (
 				<>
-					<div className='new-address'>
+					<div
+						className='new-address'
+						onClick={showNewAddressForm}>
 						<span>Add new address</span>
 						<img
 							src={images.plus}

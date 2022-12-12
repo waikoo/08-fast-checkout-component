@@ -1,11 +1,11 @@
 import React from 'react';
-import { SNewAddress, EditAddress } from '../css/styled';
+import { SNewAddress, EditAddress, SForm } from '../css/styled';
 import Form from './Form';
 import Header from './Header';
 import Title from './Title';
 
 const AddressForm = (props) => {
-	const { step, uiState, uiDispatch, shipping, dispatchShipping } = props;
+	const { step, uiState, uiDispatch, shipping, handleAddressChange } = props;
 
 	return (
 		<SNewAddress>
@@ -17,7 +17,7 @@ const AddressForm = (props) => {
 				uiState={uiState}
 				uiDispatch={uiDispatch}
 				shipping={shipping}
-				dispatchShipping={dispatchShipping}
+				handleAddressChange={handleAddressChange}
 			/>
 		</SNewAddress>
 	);

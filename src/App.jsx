@@ -23,6 +23,11 @@ const reducer = (uiState, action) => {
 				...uiState,
 				isEditingAddress: true
 			};
+		case 'closeAddressEditor':
+			return {
+				...uiState,
+				isEditingAddress: false
+			};
 
 		default:
 			return uiState;

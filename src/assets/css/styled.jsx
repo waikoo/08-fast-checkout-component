@@ -143,7 +143,7 @@ export const SNewAddress = styled.div`
 	height: 100%;
 `;
 
-export const SForm = styled.form`
+export const SForm = styled.div`
 	padding: 1rem;
 
 	.row {
