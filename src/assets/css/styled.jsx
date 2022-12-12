@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import colors from './colors';
 import fonts from './fonts';
+import images from '../images/index_images';
 
 export const PreviewOrder = styled.header`
 	background: black;
@@ -184,5 +185,27 @@ export const SForm = styled.div`
 		margin: 0;
 		font-weight: ${fonts.weight.regular};
 		transition: all 200ms ease-in-out;
+	}
+`;
+
+export const SExistingAddress = styled.div`
+	padding-bottom: 0.3rem;
+	padding-left: 1rem;
+
+	.value {
+		font-weight: ${fonts.weight.regular};
+	}
+`;
+
+export const SAddressContainer = styled.div`
+	position: relative;
+	padding: 1rem;
+	background: ${colors.summary.bg};
+
+	&:after {
+		content: url(${images.edit_section});
+		position: absolute;
+		bottom: 20px;
+		right: 20px;
 	}
 `;

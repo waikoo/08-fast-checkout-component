@@ -6,7 +6,7 @@ export default [
 		type: 'text',
 		span: 'Name',
 		spellCheck: 'false',
-		required: 'required'
+		required: true
 	},
 	{
 		id: 2,
@@ -15,7 +15,8 @@ export default [
 		type: 'text',
 		span: 'Street, Nr.',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	},
 	{
 		id: 3,
@@ -24,7 +25,8 @@ export default [
 		type: 'number',
 		span: 'Postal Code',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	},
 	{
 		id: 4,
@@ -33,7 +35,8 @@ export default [
 		type: 'text',
 		span: 'Town',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	},
 	{
 		id: 5,
@@ -42,16 +45,18 @@ export default [
 		type: 'text',
 		span: 'Country',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	},
 	{
 		id: 6,
-		name: 'address',
+		name: 'phone',
 		state: 'phone',
 		type: 'tel',
-		span: 'Address',
+		span: 'Phone',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	},
 	{
 		id: 7,
@@ -60,6 +65,7 @@ export default [
 		type: 'email',
 		span: 'Email',
 		spellCheck: 'false',
-		required: 'required'
+		required: true,
+		errorMessage: ''
 	}
 ];

@@ -5,7 +5,7 @@ import Header from './Header';
 import Title from './Title';
 
 const AddressForm = (props) => {
-	const { step, uiState, uiDispatch, shipping, handleAddressChange } = props;
+	const { step, uiState, uiDispatch, shipping, handleAddressChange, areAllFieldsCompleted, dispatchShipping, setShowStoredAddress } = props;
 
 	return (
 		<SNewAddress>
@@ -18,6 +18,9 @@ const AddressForm = (props) => {
 				uiDispatch={uiDispatch}
 				shipping={shipping}
 				handleAddressChange={handleAddressChange}
+				areAllFieldsCompleted={areAllFieldsCompleted}
+				dispatchShipping={dispatchShipping}
+				setShowStoredAddress={setShowStoredAddress}
 			/>
 		</SNewAddress>
 	);

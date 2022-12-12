@@ -9,7 +9,8 @@ export const INITIAL_STATE = {
 		phone: '',
 		email: ''
 	},
-	payment: ''
+	payment: '',
+	stored: []
 };
 
 export const reducer = (shipping, action) => {
@@ -29,6 +30,14 @@ export const reducer = (shipping, action) => {
 					...shipping.address
 				},
 				[action.payload.name]: action.payload.value
+			};
+		case 'STORE_ADDRESS':
+			return {
+				...shipping,
+				address: {
+					...shipping.address
+				},
+				stored: [...shipping.stored, Object.assign({}, shipping.address)]
 			};
 		default:
 			throw new Error('you messed up');

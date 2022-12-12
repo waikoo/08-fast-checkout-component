@@ -1,12 +1,18 @@
-import React from 'react';
-import { SBody2 } from '../../css/styled';
+import React, { useState } from 'react';
+import { SAddressContainer, SBody2 } from '../../css/styled';
 import images from '../../images/index_images';
+import AddNewAddress from '../AddNewAddress';
 import AddressForm from '../AddressForm';
+import ExistingAddress from '../ExistingAddress';
 
 const Body2 = (props) => {
-	const { uiState, uiDispatch, shipping, step, handleAddressChange } = props;
-	const showNewAddressForm = () => {
-		uiDispatch({ type: 'addressIsEdited' });
+	const { uiState, uiDispatch, shipping, step, handleAddressChange, dispatchShipping } = props;
+	console.log(Array.isArray(shipping.stored));
+
+	const [showStoredAddress, setShowStoredAddress] = useState(false);
+
+	const areAllFieldsCompleted = () => {
+		return Object.values(shipping.address).every(Boolean);
 	};
 
 	return (
@@ -18,19 +24,22 @@ const Body2 = (props) => {
 					shipping={shipping}
 					step={step}
 					handleAddressChange={handleAddressChange}
+					areAllFieldsCompleted={areAllFieldsCompleted}
+					dispatchShipping={dispatchShipping}
+					setShowStoredAddress={setShowStoredAddress}
 				/>
 			) : (
 				<>
-					<div
-						className='new-address'
-						onClick={showNewAddressForm}>
-						<span>Add new address</span>
-						<img
-							src={images.plus}
-							alt='Add new address'
-						/>
-					</div>
-					<hr />
+					{showStoredAddress &&
+						shipping.stored.length > 0 &&
+						shipping.stored.map((storedAddress) => (
+							<ExistingAddress
+								key={Date.now()}
+								storedAddress={storedAddress}
+							/>
+						))}
+
+					<AddNewAddress uiDispatch={uiDispatch} />
 				</>
 			)}
 		</SBody2>

@@ -21,7 +21,7 @@ const Body = (props) => {
 			type: 'CHANGE_METHOD',
 			payload: { name: e.target.dataset.method, value: e.target.value }
 		});
-
+	console.log(shipping);
 	return (
 		<div>
 			{uiState.body === 1 && <Body1 handleMethodChange={handleMethodChange} />}
@@ -32,6 +32,7 @@ const Body = (props) => {
 					uiState={uiState}
 					uiDispatch={uiDispatch}
 					shipping={shipping}
+					dispatchShipping={dispatchShipping}
 					handleAddressChange={handleAddressChange}
 				/>
 			)}
