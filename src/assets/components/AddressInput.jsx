@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const AddressInput = (props) => {
-	const { name, state, type, span, spellCheck, required, value, handleAddressChange } = props;
+	const { name, state, type, span, spellCheck, required, value, handleAddressChange, id } = props;
+
+	const nameRef = useRef(null);
+
+	useEffect(() => {
+		if (nameRef && id === 1) nameRef.current.focus();
+	}, [id]);
 
 	return (
 		<>
@@ -16,6 +22,7 @@ const AddressInput = (props) => {
 					value={value}
 					onChange={handleAddressChange}
 					required={required}
+					ref={nameRef}
 				/>
 			</label>
 		</>
