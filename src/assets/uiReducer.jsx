@@ -20,12 +20,12 @@ export const uiReducer = (uiState, action) => {
 				body: uiState.body + 1,
 				completedSteps: [...uiState.completedSteps, uiState.body]
 			};
-		case IS_ADDING_NEW_ADDRESS:
+		case ACTION.IS_ADDING_NEW_ADDRESS:
 			return {
 				...uiState,
 				addNewAddress: true
 			};
-		case IS_FINISHED_ADDING_NEW_ADDRESS:
+		case ACTION.IS_FINISHED_ADDING_NEW_ADDRESS:
 			return {
 				...uiState,
 				addNewAddress: false
