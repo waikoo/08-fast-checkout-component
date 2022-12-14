@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { SButton } from '../css/styled';
+import { ACTION } from '../uiReducer';
 
 const Button = (props) => {
 	const { children, uiState, uiDispatch, form, showError, setShowError, shipping, areAllFieldsCompleted, dispatchShipping, setShowStoredAddress } = props;
 
 	const submitHandler = () => {
-		uiDispatch({ type: 'nextBody' });
+		uiDispatch({ type: ACTION.NEXT_BODY });
 	};
 
 	const submitNewAddress = () => {
@@ -14,7 +15,7 @@ const Button = (props) => {
 		else {
 			dispatchShipping({ type: 'STORE_ADDRESS' });
 			setShowError(false);
-			uiDispatch({ type: 'closeAddressEditor' });
+			uiDispatch({ type: ACTION.IS_FINISHED_ADDING_NEW_ADDRESS });
 			setShowStoredAddress(true);
 		}
 	};

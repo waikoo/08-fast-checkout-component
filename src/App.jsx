@@ -25,7 +25,7 @@ function App() {
 			<main>
 				<ProgressBar
 					completedSteps={uiState.completedSteps}
-					isEditingAddress={uiState.isEditingAddress}
+					addNewAddress={uiState.addNewAddress}
 				/>
 				<Title step={uiState.body}></Title>
 				<Body

@@ -1,11 +1,12 @@
 import React from 'react';
 import images from '../images/index_images';
+import { ACTION } from '../uiReducer';
 
 const AddNewAddress = (props) => {
 	const { uiDispatch } = props;
 
 	const showNewAddressForm = () => {
-		uiDispatch({ type: 'addressIsEdited' });
+		uiDispatch({ type: ACTION.IS_ADDING_NEW_ADDRESS });
 	};
 
 	return (

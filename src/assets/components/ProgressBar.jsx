@@ -3,7 +3,7 @@ import { Line, SProgressBar } from '../css/styled';
 import ProgressItem from './ProgressItem';
 
 const ProgressBar = (props) => {
-	const { completedSteps, isEditingAddress } = props;
+	const { completedSteps, addNewAddress } = props;
 	console.log(completedSteps);
 	let is1Completed = completedSteps[0] === 1;
 	let is2Completed = completedSteps[1] === 2;
@@ -11,7 +11,7 @@ const ProgressBar = (props) => {
 
 	return (
 		<>
-			{!isEditingAddress ? (
+			{!addNewAddress ? (
 				<SProgressBar>
 					<ProgressItem
 						isCompleted={is1Completed}

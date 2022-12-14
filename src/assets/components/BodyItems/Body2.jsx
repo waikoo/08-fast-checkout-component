@@ -17,7 +17,7 @@ const Body2 = (props) => {
 
 	return (
 		<SBody2>
-			{uiState.isEditingAddress ? (
+			{uiState.addNewAddress ? (
 				<AddressForm
 					uiState={uiState}
 					uiDispatch={uiDispatch}
