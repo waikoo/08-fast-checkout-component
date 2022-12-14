@@ -1,17 +1,17 @@
 import React from 'react';
-import inputData from '../../assets/newAddressInputData';
 import { SAddressContainer, SExistingAddress } from '../css/styled';
+import newAddressInputData from '../newAddressInputData';
 
 const ExistingAddress = (props) => {
-	const { storedAddress } = props;
+	const { savedAddress } = props;
 
 	return (
 		<SAddressContainer>
-			{inputData.map((input) => {
+			{newAddressInputData.map((input) => {
 				return (
-					<SExistingAddress key={input.id}>
+					<SExistingAddress key={savedAddress.id}>
 						<span className='key'>
-							{input.span}: <span className='value'>{storedAddress[input.state]}</span>
+							{input.span}: <span className='value'>{savedAddress[input.state]}</span>
 						</span>
 					</SExistingAddress>
 				);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SAddressContainer, SBody2 } from '../../css/styled';
+import useGetAddress from '../../hooks/useGetAddress';
 import images from '../../images/index_images';
 import AddNewAddress from '../AddNewAddress';
 import AddressForm from '../AddressForm';
@@ -7,7 +8,6 @@ import ExistingAddress from '../ExistingAddress';
 
 const Body2 = (props) => {
 	const { uiState, uiDispatch, shipping, step, handleAddressChange, dispatchShipping } = props;
-	console.log(Array.isArray(shipping.stored));
 
 	const [showStoredAddress, setShowStoredAddress] = useState(false);
 
@@ -15,6 +15,7 @@ const Body2 = (props) => {
 		return Object.values(shipping.address).every(Boolean);
 	};
 
+	const savedAddresses = useGetAddress('savedAddresses');
 	return (
 		<SBody2>
 			{uiState.addNewAddress ? (
@@ -31,13 +32,15 @@ const Body2 = (props) => {
 			) : (
 				<>
 					{showStoredAddress &&
-						shipping.stored.length > 0 &&
-						shipping.stored.map((storedAddress) => (
-							<ExistingAddress
-								key={Date.now()}
-								storedAddress={storedAddress}
-							/>
-						))}
+						savedAddresses.length > 0 &&
+						savedAddresses.map((savedAddress) => {
+							return (
+								<ExistingAddress
+									key={savedAddress.id}
+									savedAddress={savedAddress}
+								/>
+							);
+						})}
 
 					<AddNewAddress uiDispatch={uiDispatch} />
 				</>

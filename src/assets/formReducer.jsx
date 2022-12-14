@@ -1,6 +1,7 @@
 export const INITIAL_STATE = {
 	method: 'home',
 	address: {
+		id: 1,
 		name: '',
 		streetAndNumber: '',
 		postalCode: '',
@@ -9,8 +10,7 @@ export const INITIAL_STATE = {
 		phone: '',
 		email: ''
 	},
-	payment: '',
-	stored: []
+	payment: ''
 };
 
 export const reducer = (shipping, action) => {
@@ -31,13 +31,13 @@ export const reducer = (shipping, action) => {
 					[action.payload.state]: action.payload.value
 				}
 			};
-		case 'STORE_ADDRESS':
+		case 'INCREMENT_ADDRESS_ID':
 			return {
 				...shipping,
 				address: {
-					...shipping.address
-				},
-				stored: [...shipping.stored, Object.assign({}, shipping.address)]
+					...shipping.address,
+					id: shipping.address.id + 1
+				}
 			};
 		case 'CHANGE_PAYMENT':
 			return {
@@ -45,8 +45,6 @@ export const reducer = (shipping, action) => {
 				address: {
 					...shipping.address
 				},
-				stored: [...shipping.stored],
-				// method: shipping.method,
 				[action.payload.name]: action.payload.value
 			};
 		default:

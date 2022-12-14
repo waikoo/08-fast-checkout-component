@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { SButton } from '../css/styled';
+import useSetAddress from '../hooks/useSetAddress';
 import { ACTION } from '../uiReducer';
 
 const Button = (props) => {
@@ -13,7 +14,8 @@ const Button = (props) => {
 	const submitNewAddress = () => {
 		if (!areAllFieldsCompleted()) setShowError(true);
 		else {
-			dispatchShipping({ type: 'STORE_ADDRESS' });
+			dispatchShipping({ type: 'INCREMENT_ADDRESS_ID' });
+			useSetAddress('savedAddresses', shipping.address);
 			setShowError(false);
 			uiDispatch({ type: ACTION.IS_FINISHED_ADDING_NEW_ADDRESS });
 			setShowStoredAddress(true);
@@ -21,6 +23,7 @@ const Button = (props) => {
 	};
 
 	if (children === 'Continue') return <SButton onClick={submitHandler}>{children}</SButton>;
+
 	if (children === 'Save')
 		return (
 			<SButton
@@ -29,6 +32,7 @@ const Button = (props) => {
 				{children}
 			</SButton>
 		);
+
 	if (children === 'Confirm Order') return <SButton>{children}</SButton>;
 };
 
