@@ -6,42 +6,15 @@ import ProgressBar from './assets/components/ProgressBar';
 import Title from './assets/components/Title';
 import Button from './assets/components/Button';
 import Body from './assets/components/Body';
+import { uiReducer, INITIAL_UI_STATE } from './assets/uiReducer';
 
 import { useReducer } from 'react';
 import { PreviewOrder } from './assets/css/styled';
 
-const reducer = (uiState, action) => {
-	switch (action.type) {
-		case 'nextBody':
-			return {
-				...uiState,
-				body: uiState.body + 1,
-				completedSteps: [1]
-			};
-		case 'addressIsEdited':
-			return {
-				...uiState,
-				isEditingAddress: true
-			};
-		case 'closeAddressEditor':
-			return {
-				...uiState,
-				isEditingAddress: false
-			};
-
-		default:
-			return uiState;
-	}
-};
-
 function App() {
-	const [uiState, uiDispatch] = useReducer(reducer, {
-		body: 1,
-		isEditingAddress: false,
-		isCurrentCompleted: false,
-		addNewAddress: false,
-		completedSteps: []
-	});
+	const [uiState, uiDispatch] = useReducer(uiReducer, INITIAL_UI_STATE);
+
+	console.table(uiState);
 
 	return (
 		<div className='App'>

@@ -22,6 +22,13 @@ const Body = (props) => {
 			type: 'CHANGE_METHOD',
 			payload: { name: e.target.dataset.method, value: e.target.value }
 		});
+
+	const handlePaymentChange = (e) =>
+		dispatchShipping({
+			type: 'CHANGE_PAYMENT',
+			payload: { name: e.target.dataset.payment, value: e.target.value }
+		});
+
 	console.log(shipping);
 	return (
 		<div>
@@ -37,7 +44,12 @@ const Body = (props) => {
 					handleAddressChange={handleAddressChange}
 				/>
 			)}
-			{uiState.body === 3 && <Body3 uiState={uiState} />}
+			{uiState.body === 3 && (
+				<Body3
+					uiState={uiState}
+					handlePaymentChange={handlePaymentChange}
+				/>
+			)}
 			<Button
 				uiState={uiState}
 				uiDispatch={uiDispatch}>

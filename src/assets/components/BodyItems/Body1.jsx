@@ -1,24 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { SBody1 } from '../../css/styled';
 import { body1 } from '../../radioInputs';
 import InputLabel from '../Input';
+import useChecked from '../../hooks/useChecked';
 
 const Body1 = (props) => {
 	const { handleMethodChange } = props;
 
-	const [checked, setChecked] = useState('home');
+	const [isChecked, setCheckedValue] = useChecked('home');
 
 	const homeRef = useRef(null);
 	const storeRef = useRef(null);
 
 	const onChange = (e) => {
-		setChecked(e.target.value);
+		setCheckedValue(e);
 		handleMethodChange(e);
 	};
-
-	const isChecked = (value) => value === checked;
 
 	return (
 		<SBody1>

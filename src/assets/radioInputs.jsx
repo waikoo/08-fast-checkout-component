@@ -14,3 +14,20 @@ export const body1 = [
 		value: 'store'
 	}
 ];
+
+export const body3 = [
+	{
+		id: 1,
+		type: 'radio',
+		name: 'body3',
+		payment: 'payment',
+		value: 'credit'
+	},
+	{
+		id: 2,
+		type: 'radio',
+		name: 'body3',
+		payment: 'payment',
+		value: 'cash'
+	}
+];

@@ -4,9 +4,10 @@ import ProgressItem from './ProgressItem';
 
 const ProgressBar = (props) => {
 	const { completedSteps, isEditingAddress } = props;
-
+	console.log(completedSteps);
 	let is1Completed = completedSteps[0] === 1;
-	let is2Completed = completedSteps[0] === 2;
+	let is2Completed = completedSteps[1] === 2;
+	let is3Completed = completedSteps[2] === 3;
 
 	return (
 		<>
@@ -24,7 +25,11 @@ const ProgressBar = (props) => {
 						Address
 					</ProgressItem>
 					<Line />
-					<ProgressItem number={3}>Payment</ProgressItem>
+					<ProgressItem
+						isCompleted={is3Completed}
+						number={3}>
+						Payment
+					</ProgressItem>
 					<Line />
 					<ProgressItem number={4}>Confirm</ProgressItem>
 				</SProgressBar>
