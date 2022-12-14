@@ -10,43 +10,44 @@ const Form = (props) => {
 	const [showError, setShowError] = useState(false);
 	const formRef = useRef(null);
 
-	const fillForm = () => {
-		if (formRef) {
-			const inputs = formRef.current.querySelectorAll('input');
-			inputs.forEach((input) => {
-				switch (input.type) {
-					case 'text':
-						input.value = 'text';
-						break;
-					case 'email':
-						input.value = 'ai@chatgpt.com';
-						break;
-					case 'number':
-						input.value = '12';
-						break;
-					case 'tel':
-						input.value = '5939205952';
-						break;
-					default:
-						input.value = '12' || 'abc' || 'ai@chatgpt.com';
-				}
-			});
-		}
-	};
-
 	return (
 		<SForm>
 			<form ref={formRef}>
-				{inputData.map((input) => (
-					<AddressInput
-						key={input.id}
-						value={shipping.address[input.state]}
-						{...input}
-						handleAddressChange={handleAddressChange}
-					/>
-				))}
+				{inputData
+					.filter((item) => item.id === 1 || item.id === 2)
+					.map((item) => (
+						<AddressInput
+							key={item.id}
+							value={shipping.address[item.state]}
+							{...item}
+							handleAddressChange={handleAddressChange}
+						/>
+					))}
+
+				<div className='row'>
+					{inputData
+						.filter((item) => item.id === 3 || item.id === 4)
+						.map((item) => (
+							<AddressInput
+								key={item.id}
+								value={shipping.address[item.state]}
+								{...item}
+								handleAddressChange={handleAddressChange}
+							/>
+						))}
+				</div>
+
+				{inputData
+					.filter((item) => item.id >= 5)
+					.map((item) => (
+						<AddressInput
+							key={item.id}
+							value={shipping.address[item.state]}
+							{...item}
+							handleAddressChange={handleAddressChange}
+						/>
+					))}
 				{showError && <span style={{ color: 'red' }}>Please fill out all fields.</span>}
-				<h2 onClick={fillForm}>Fill Form</h2>
 				<Button
 					form={formRef}
 					uiDispatch={uiDispatch}

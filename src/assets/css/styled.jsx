@@ -13,6 +13,7 @@ export const PreviewOrder = styled.header`
 	padding: 0.8rem;
 	font-weight: ${fonts.weight.medium};
 	font-size: ${fonts.size['18']};
+	width: 100%;
 
 	span {
 		position: absolute;

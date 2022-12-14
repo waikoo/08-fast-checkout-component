@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { INITIAL_STATE, reducer } from '../formReducer';
 import Body1 from './BodyItems/Body1';
 import Body2 from './BodyItems/Body2';
+import Body3 from './BodyItems/Body3';
 import Button from './Button';
 
 const Body = (props) => {
@@ -36,6 +37,7 @@ const Body = (props) => {
 					handleAddressChange={handleAddressChange}
 				/>
 			)}
+			{uiState.body === 3 && <Body3 uiState={uiState} />}
 			<Button
 				uiState={uiState}
 				uiDispatch={uiDispatch}>

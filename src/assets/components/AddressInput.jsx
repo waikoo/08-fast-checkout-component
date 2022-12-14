@@ -2,6 +2,7 @@ import React from 'react';
 
 const AddressInput = (props) => {
 	const { name, state, type, span, spellCheck, required, value, handleAddressChange } = props;
+
 	return (
 		<>
 			<label htmlFor='name'>

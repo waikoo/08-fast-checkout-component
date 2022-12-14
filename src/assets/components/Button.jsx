@@ -20,7 +20,14 @@ const Button = (props) => {
 	};
 
 	if (children === 'Continue') return <SButton onClick={submitHandler}>{children}</SButton>;
-	if (children === 'Save') return <SButton onClick={submitNewAddress}>{children}</SButton>;
+	if (children === 'Save')
+		return (
+			<SButton
+				onClick={submitNewAddress}
+				style={{ marginTop: '2rem' }}>
+				{children}
+			</SButton>
+		);
 	if (children === 'Confirm Order') return <SButton>{children}</SButton>;
 };
 
