@@ -18,7 +18,7 @@ const Button = (props) => {
 			useSetAddress('savedAddresses', shipping.address);
 			setShowError(false);
 			uiDispatch({ type: ACTION.IS_FINISHED_ADDING_NEW_ADDRESS });
-			setShowStoredAddress(true);
+			// setShowStoredAddress(true);
 		}
 	};
 

@@ -3,7 +3,7 @@ import colors from './colors';
 import fonts from './fonts';
 import images from '../images/index_images';
 
-export const PreviewOrder = styled.header`
+export const SHeader = styled.header`
 	background: black;
 	text-transform: uppercase;
 	display: flex;
@@ -19,14 +19,20 @@ export const PreviewOrder = styled.header`
 		position: absolute;
 		width: 100%;
 		text-align: center;
+		z-index: 0;
 	}
 `;
 
-export const EditAddress = styled(PreviewOrder)`
+export const EditAddress = styled(SHeader)`
 	text-transform: capitalize;
 	#span {
 		left: -1rem;
 		font-weight: ${fonts.weight.medium};
+	}
+
+	img {
+		position: relative;
+		z-index: 2;
 	}
 `;
 
@@ -87,7 +93,6 @@ export const STitle = styled.h1`
 	text-align: center;
 	font-size: ${fonts.size['14']};
 	font-weight: ${fonts.weight.bold};
-	margin-top: ${({ lower }) => (lower ? '8rem' : null)};
 `;
 
 export const SBody1 = styled.div`
@@ -189,24 +194,40 @@ export const SForm = styled.div`
 	}
 `;
 
-export const SExistingAddress = styled.div`
-	padding-bottom: 0.3rem;
-	padding-left: 1rem;
+export const SAddressContainer = styled.div`
+	margin-top: 1rem;
+	position: relative;
+	padding: 0 1rem 1rem;
+	background: ${colors.summary.bg};
+
+	&:focus-within {
+		border: 3px solid black;
+		box-sizing: content-box;
+	}
+
+	img {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+	}
 
 	.value {
 		font-weight: ${fonts.weight.regular};
 	}
-`;
 
-export const SAddressContainer = styled.div`
-	position: relative;
-	padding: 1rem;
-	background: ${colors.summary.bg};
+	.existing-address {
+		padding-bottom: 0.3rem;
+		padding-left: 1rem;
+		position: relative;
+	}
 
-	&:after {
-		content: url(${images.edit_section});
+	input {
 		position: absolute;
-		bottom: 20px;
-		right: 20px;
+		left: -10px;
+		top: 21px;
+	}
+
+	input[type='radio']:checked {
+		accent-color: black;
 	}
 `;

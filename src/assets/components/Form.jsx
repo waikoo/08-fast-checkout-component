@@ -5,7 +5,7 @@ import Button from './Button';
 import inputData from '../../assets/newAddressInputData';
 
 const Form = (props) => {
-	const { uiState, uiDispatch, shipping, handleAddressChange, areAllFieldsCompleted, dispatchShipping, setShowStoredAddress } = props;
+	const { uiState, uiDispatch, shipping, handleAddressChange, areAllFieldsCompleted, dispatchShipping } = props;
 
 	const [showError, setShowError] = useState(false);
 	const formRef = useRef(null);
@@ -55,8 +55,7 @@ const Form = (props) => {
 					showError={showError}
 					shipping={shipping}
 					areAllFieldsCompleted={areAllFieldsCompleted}
-					dispatchShipping={dispatchShipping}
-					setShowStoredAddress={setShowStoredAddress}>
+					dispatchShipping={dispatchShipping}>
 					Save
 				</Button>
 			</form>

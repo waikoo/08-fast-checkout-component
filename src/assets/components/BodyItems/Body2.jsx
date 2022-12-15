@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
-import { SAddressContainer, SBody2 } from '../../css/styled';
+import React from 'react';
+import { SBody2 } from '../../css/styled';
+import useChecked from '../../hooks/useChecked';
 import useGetAddress from '../../hooks/useGetAddress';
-import images from '../../images/index_images';
 import AddNewAddress from '../AddNewAddress';
 import AddressForm from '../AddressForm';
-import ExistingAddress from '../ExistingAddress';
+import InputLabel from '../Input';
 
 const Body2 = (props) => {
 	const { uiState, uiDispatch, shipping, step, handleAddressChange, dispatchShipping } = props;
 
-	const [showStoredAddress, setShowStoredAddress] = useState(false);
+	const [isChecked, setCheckedValue, toggleChecked] = useChecked('address1');
+
+	const savedAddresses = useGetAddress('savedAddresses');
+
+	// const onChange = (e) => {};
 
 	const areAllFieldsCompleted = () => {
 		return Object.values(shipping.address).every(Boolean);
 	};
 
-	const savedAddresses = useGetAddress('savedAddresses');
+	// console.table(shipping);
+	// console.table(shipping.address);
+
 	return (
 		<SBody2>
 			{uiState.addNewAddress ? (
@@ -27,18 +33,27 @@ const Body2 = (props) => {
 					handleAddressChange={handleAddressChange}
 					areAllFieldsCompleted={areAllFieldsCompleted}
 					dispatchShipping={dispatchShipping}
-					setShowStoredAddress={setShowStoredAddress}
 				/>
 			) : (
 				<>
-					{showStoredAddress &&
-						savedAddresses.length > 0 &&
+					{savedAddresses?.length > 0 &&
 						savedAddresses.map((savedAddress) => {
 							return (
-								<ExistingAddress
-									key={savedAddress.id}
+								<InputLabel
+									isPrevAddress={true}
+									key={savedAddress.id + 100}
+									htmlFor={savedAddress.name + savedAddress.id}
+									type='radio'
+									name='savedAddress'
+									value={'address' + savedAddress.id}
+									savedId={`savedAddress${savedAddress.id}`}
 									savedAddress={savedAddress}
-								/>
+									onChange={setCheckedValue}
+									checked={isChecked('address' + savedAddress.id)}
+									setCheckedValue={setCheckedValue}
+									toggleChecked={toggleChecked}
+									savedAddresses={savedAddresses}
+									dispatchShipping={dispatchShipping}></InputLabel>
 							);
 						})}
 

@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
-  main {
-    /* padding: 1rem; */
+  .address-con input[type='radio']:checked {
+    color: black;
   }
 `;

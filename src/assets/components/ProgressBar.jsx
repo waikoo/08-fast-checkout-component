@@ -4,10 +4,12 @@ import ProgressItem from './ProgressItem';
 
 const ProgressBar = (props) => {
 	const { completedSteps, addNewAddress } = props;
-	console.log(completedSteps);
+
+	// TODO: useReducer here when clicking through the progressItems
 	let is1Completed = completedSteps[0] === 1;
 	let is2Completed = completedSteps[1] === 2;
 	let is3Completed = completedSteps[2] === 3;
+	let is4Completed = completedSteps[3] === 4;
 
 	return (
 		<>
@@ -31,7 +33,11 @@ const ProgressBar = (props) => {
 						Payment
 					</ProgressItem>
 					<Line />
-					<ProgressItem number={4}>Confirm</ProgressItem>
+					<ProgressItem
+						isCompleted={is4Completed}
+						number={4}>
+						Confirm
+					</ProgressItem>
 				</SProgressBar>
 			) : null}
 		</>
