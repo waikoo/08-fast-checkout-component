@@ -12,12 +12,15 @@ const Button = (props) => {
 	};
 
 	const submitNewAddress = () => {
-		if (!areAllFieldsCompleted()) setShowError(true);
-		else {
+		if (!areAllFieldsCompleted() && !uiState.isEditingAddress) setShowError(true);
+		else if (uiState.isEditingAddress) {
+			// map through stored addresses, id of map === being edited
+			// overwrite local array, save into localStorage
+		} else {
 			dispatchShipping({ type: 'INCREMENT_ADDRESS_ID' });
 			useSetAddress('savedAddresses', shipping.address);
 			setShowError(false);
-			uiDispatch({ type: ACTION.IS_FINISHED_ADDING_NEW_ADDRESS });
+			uiDispatch({ type: ACTION.HAS_FINISHED_ADDING_NEW_ADDRESS });
 			// setShowStoredAddress(true);
 		}
 	};

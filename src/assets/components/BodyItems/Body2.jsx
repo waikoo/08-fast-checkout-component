@@ -24,7 +24,7 @@ const Body2 = (props) => {
 
 	return (
 		<SBody2>
-			{uiState.addNewAddress ? (
+			{uiState.addNewAddress || uiState.isEditingAddress ? (
 				<AddressForm
 					uiState={uiState}
 					uiDispatch={uiDispatch}
@@ -40,8 +40,11 @@ const Body2 = (props) => {
 						savedAddresses.map((savedAddress) => {
 							return (
 								<InputLabel
+									// uiState={uiState}
+									uiDispatch={uiDispatch}
 									isPrevAddress={true}
 									key={savedAddress.id + 100}
+									// numberOnlyId={savedAddress.id}
 									htmlFor={savedAddress.name + savedAddress.id}
 									type='radio'
 									name='savedAddress'

@@ -29,6 +29,7 @@ const Body = (props) => {
 			payload: { name: e.target.dataset.payment, value: e.target.value }
 		});
 
+	console.table(uiState);
 	// console.table(shipping.address);
 	return (
 		<div>

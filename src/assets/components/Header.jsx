@@ -7,7 +7,7 @@ const Header = (props) => {
 	const { showEditAddress, uiDispatch } = props;
 
 	const goBack = () => {
-		uiDispatch({ type: ACTION.IS_FINISHED_ADDING_NEW_ADDRESS });
+		uiDispatch({ type: ACTION.HAS_FINISHED_ADDING_NEW_ADDRESS });
 	};
 
 	return (

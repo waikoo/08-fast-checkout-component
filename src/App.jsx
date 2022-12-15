@@ -16,10 +16,7 @@ function App() {
 			<GlobalStyles />
 			<Header showEditAddress={false} />
 			<main>
-				<ProgressBar
-					completedSteps={uiState.completedSteps}
-					addNewAddress={uiState.addNewAddress}
-				/>
+				<ProgressBar uiState={uiState} />
 				<Title step={uiState.body}></Title>
 				<Body
 					step={uiState.body}

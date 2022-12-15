@@ -1,9 +1,12 @@
 import React from 'react';
 import { Line, SProgressBar } from '../css/styled';
+import { ACTION } from '../uiReducer';
 import ProgressItem from './ProgressItem';
 
 const ProgressBar = (props) => {
-	const { completedSteps, addNewAddress } = props;
+	const {
+		uiState: { hideProgressBar, completedSteps }
+	} = props;
 
 	// TODO: useReducer here when clicking through the progressItems
 	let is1Completed = completedSteps[0] === 1;
@@ -13,7 +16,7 @@ const ProgressBar = (props) => {
 
 	return (
 		<>
-			{!addNewAddress ? (
+			{!hideProgressBar ? (
 				<SProgressBar>
 					<ProgressItem
 						isCompleted={is1Completed}

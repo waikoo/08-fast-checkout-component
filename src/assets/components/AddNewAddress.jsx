@@ -7,6 +7,7 @@ const AddNewAddress = (props) => {
 
 	const showNewAddressForm = () => {
 		uiDispatch({ type: ACTION.IS_ADDING_NEW_ADDRESS });
+		uiDispatch({ type: ACTION.HIDE_PROGRESS_BAR });
 	};
 
 	return (

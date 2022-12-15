@@ -7,11 +7,6 @@ const useChecked = (initialValue) => {
 
 	const setCheckedValue = (e) => setChecked(e.target.value);
 
-	// const toggleChecked = (value) => {
-	// 	if (value === checked) setChecked(false);
-	// 	else setChecked(value);
-	// };
-
 	return [isChecked, setCheckedValue];
 };
 
