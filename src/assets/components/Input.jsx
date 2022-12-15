@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SAddressContainer } from '../css/styled';
 import images from '../images/index_images';
 import newAddressInputData from '../newAddressInputData';
 import { ACTION } from '../uiReducer';
 
 const InputLabel = (props) => {
-	const { onClick, inputRef, type, name, value, onChange, children, checked, method, payment, savedAddress, isPrevAddress, id, savedId, setCheckedValue, savedAddresses, dispatchShipping, uiDispatch } = props;
+	const { onClick, inputRef, type, name, value, onChange, children, checked, method, payment, savedAddress, isPrevAddress, id, savedId, setCheckedValue, savedAddresses, dispatchShipping, uiDispatch, uiState, someRef } = props;
 	// if (inputRef.value === 'home') inputRef.target.checked = true;
 
 	const findIdToModifyState = (targetId) => {
@@ -33,6 +33,8 @@ const InputLabel = (props) => {
 		findIdToModifyState(targetId);
 	};
 
+	if (isPrevAddress) useEffect(() => someRef.current.click(), []);
+
 	return (
 		<div>
 			{!isPrevAddress && (
@@ -49,7 +51,7 @@ const InputLabel = (props) => {
 						value={value}
 						id={value}
 						onChange={onChange}
-						checked={checked === true} // convert string to boolean
+						checked={checked === true}
 					/>
 				</label>
 			)}
@@ -58,7 +60,8 @@ const InputLabel = (props) => {
 				<SAddressContainer>
 					<label
 						className='existing-address'
-						onClick={selectShippingAddress}>
+						onClick={selectShippingAddress}
+						ref={isPrevAddress && value === 'address1' ? someRef : null}>
 						{newAddressInputData.map((input) => {
 							return (
 								<div key={input.state}>
@@ -66,6 +69,7 @@ const InputLabel = (props) => {
 										type='radio'
 										name={name}
 										value={value}
+										data-selected={id === 1}
 										id={`${savedId}`}
 										checked={checked === true}
 										onChange={onChange}

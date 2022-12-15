@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useChecked = (initialValue) => {
 	const [checked, setChecked] = useState(initialValue);
+
+	useEffect(() => {
+		setChecked(initialValue);
+	}, []);
 
 	const isChecked = (value) => value === checked;
 

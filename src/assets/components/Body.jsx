@@ -30,7 +30,8 @@ const Body = (props) => {
 		});
 
 	console.table(uiState);
-	// console.table(shipping.address);
+	console.table(shipping);
+
 	return (
 		<div>
 			{uiState.body === 1 && <Body1 handleMethodChange={handleMethodChange} />}

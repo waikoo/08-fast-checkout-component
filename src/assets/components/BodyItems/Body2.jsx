@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SBody2 } from '../../css/styled';
 import useChecked from '../../hooks/useChecked';
 import useGetAddress from '../../hooks/useGetAddress';
@@ -9,19 +9,19 @@ import InputLabel from '../Input';
 const Body2 = (props) => {
 	const { uiState, uiDispatch, shipping, step, handleAddressChange, dispatchShipping } = props;
 
-	const [isChecked, setCheckedValue, toggleChecked] = useChecked('address1');
+	const [isChecked, setCheckedValue] = useChecked('address1');
 
 	const savedAddresses = useGetAddress('savedAddresses');
 
-	// const onChange = (e) => {};
+	const onChange = (e) => {
+		setCheckedValue(e);
+	};
 
 	const areAllFieldsCompleted = () => {
 		return Object.values(shipping.address).every(Boolean);
 	};
 
-	// console.table(shipping);
-	// console.table(shipping.address);
-
+	const someRef = useRef(null);
 	return (
 		<SBody2>
 			{uiState.addNewAddress || uiState.isEditingAddress ? (
@@ -38,25 +38,26 @@ const Body2 = (props) => {
 				<>
 					{savedAddresses?.length > 0 &&
 						savedAddresses.map((savedAddress) => {
+							console.log(isChecked('address' + savedAddress.id));
 							return (
 								<InputLabel
 									// uiState={uiState}
+									someRef={someRef}
 									uiDispatch={uiDispatch}
 									isPrevAddress={true}
 									key={savedAddress.id + 100}
-									// numberOnlyId={savedAddress.id}
 									htmlFor={savedAddress.name + savedAddress.id}
 									type='radio'
 									name='savedAddress'
 									value={'address' + savedAddress.id}
 									savedId={`savedAddress${savedAddress.id}`}
 									savedAddress={savedAddress}
-									onChange={setCheckedValue}
+									onChange={onChange}
 									checked={isChecked('address' + savedAddress.id)}
 									setCheckedValue={setCheckedValue}
-									toggleChecked={toggleChecked}
 									savedAddresses={savedAddresses}
-									dispatchShipping={dispatchShipping}></InputLabel>
+									dispatchShipping={dispatchShipping}
+									uiState={uiState}></InputLabel>
 							);
 						})}
 

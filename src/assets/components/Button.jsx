@@ -5,7 +5,7 @@ import useSetAddress from '../hooks/useSetAddress';
 import { ACTION } from '../uiReducer';
 
 const Button = (props) => {
-	const { children, uiState, uiDispatch, form, showError, setShowError, shipping, areAllFieldsCompleted, dispatchShipping, setShowStoredAddress } = props;
+	const { children, uiState, uiDispatch, form, showError, setShowError, shipping, areAllFieldsCompleted, dispatchShipping } = props;
 
 	const submitHandler = () => {
 		uiDispatch({ type: ACTION.NEXT_BODY });
@@ -21,7 +21,6 @@ const Button = (props) => {
 			useSetAddress('savedAddresses', shipping.address);
 			setShowError(false);
 			uiDispatch({ type: ACTION.HAS_FINISHED_ADDING_NEW_ADDRESS });
-			// setShowStoredAddress(true);
 		}
 	};
 

@@ -127,6 +127,7 @@ export const SBody2 = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem;
+		margin-top: 1rem;
 	}
 
 	span {
@@ -201,6 +202,8 @@ export const SAddressContainer = styled.div`
 	background: ${colors.summary.bg};
 
 	&:focus-within {
+	}
+	&:focus-within {
 		border: 3px solid black;
 		box-sizing: content-box;
 	}
@@ -230,4 +233,9 @@ export const SAddressContainer = styled.div`
 	input[type='radio']:checked {
 		accent-color: black;
 	}
+	/*
+	div:has(label:has(div:has(input[type='radio']))):checked {
+		border: 3px solid black;
+		box-sizing: content-box;
+	} */
 `;
