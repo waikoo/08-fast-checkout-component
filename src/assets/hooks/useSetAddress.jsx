@@ -1,19 +1,20 @@
-const useSetAddress = (key, data) => {
-	const oldData = JSON.parse(localStorage.getItem(key));
+const useSetAddress = (key, newData, update = false) => {
+	const storedData = JSON.parse(localStorage.getItem(key));
+	const isArray = (arrayOrNotArray) => Array.isArray(arrayOrNotArray);
+	const isObject = (objectOrNotObject) => typeof objectOrNotObject === 'object';
 
-	if (!Array.isArray(data) && typeof data === 'object') {
-		if (Array.isArray(oldData)) {
-			data.id !== oldData.length + 1 ? (data.id = oldData.length + 1) : null;
-			localStorage.setItem(key, JSON.stringify([...oldData, data]));
-		} else if (oldData === undefined || oldData === null) {
-			localStorage.setItem(key, JSON.stringify([data]));
-		} else {
-			console.warn('old data is not an array');
+	if (!isArray(newData) && isObject(newData)) {
+		if (isArray(storedData) && !update) {
+			newData.id !== storedData.length + 1 ? (newData.id = storedData.length + 1) : null;
+			localStorage.setItem(key, JSON.stringify([...storedData, newData]));
+		} else if (storedData === undefined || (storedData === null && !update)) {
+			localStorage.setItem(key, JSON.stringify([newData]));
 		}
-	} else if (typeof oldData === 'object') {
-		localStorage.setItem(key, JSON.stringify([oldData, data]));
-	} else {
-		console.warn('new data is not an object');
+	} else if (isArray(newData) && update) {
+		localStorage.removeItem('savedAddresses');
+		localStorage.setItem(key, JSON.stringify(newData));
+	} else if (isObject(storedData)) {
+		localStorage.setItem(key, JSON.stringify([storedData, newData]));
 	}
 };
 

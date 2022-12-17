@@ -2,6 +2,7 @@ export const INITIAL_UI_STATE = {
 	body: 1,
 	hideProgressBar: false,
 	isEditingAddress: false,
+	idOfAddressBeingEdited: null,
 	addNewAddress: false,
 	completedSteps: []
 };
@@ -13,7 +14,8 @@ export const ACTION = {
 	IS_EDITING_ADDRESS: 'isEditingAddress',
 	HAS_FINISHED_EDITING_ADDRESS: 'hasFinishedEditingAddress',
 	SHOW_PROGRESS_BAR: 'showProgressBar',
-	HIDE_PROGRESS_BAR: 'hideProgressBar'
+	HIDE_PROGRESS_BAR: 'hideProgressBar',
+	UPDATE_ID_OF_ADDRESS_BEING_EDITED: 'updateIdOfAddressBeingEdited'
 };
 
 export const uiReducer = (uiState, action) => {
@@ -53,6 +55,11 @@ export const uiReducer = (uiState, action) => {
 			return {
 				...uiState,
 				isEditingAddress: false
+			};
+		case ACTION.UPDATE_ID_OF_ADDRESS_BEING_EDITED:
+			return {
+				...uiState,
+				idOfAddressBeingEdited: action.payload.value
 			};
 		default:
 			return uiState;

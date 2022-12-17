@@ -210,8 +210,9 @@ export const SAddressContainer = styled.div`
 
 	img {
 		position: absolute;
-		bottom: 10px;
-		right: 10px;
+		bottom: -1rem;
+		right: -1rem;
+		padding: 1rem;
 	}
 
 	.value {

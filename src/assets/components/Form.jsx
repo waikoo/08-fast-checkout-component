@@ -18,7 +18,7 @@ const Form = (props) => {
 					.map((item) => (
 						<AddressInput
 							key={item.id}
-							value={shipping.address[item.state]}
+							value={uiState.addNewAddress ? '' : shipping.address[item.state]}
 							{...item}
 							handleAddressChange={handleAddressChange}
 						/>
@@ -30,7 +30,7 @@ const Form = (props) => {
 						.map((item) => (
 							<AddressInput
 								key={item.id}
-								value={shipping.address[item.state]}
+								value={uiState.addNewAddress ? '' : shipping.address[item.state]}
 								{...item}
 								handleAddressChange={handleAddressChange}
 							/>
@@ -42,7 +42,7 @@ const Form = (props) => {
 					.map((item) => (
 						<AddressInput
 							key={item.id}
-							value={shipping.address[item.state]}
+							value={uiState.addNewAddress ? '' : shipping.address[item.state]}
 							{...item}
 							handleAddressChange={handleAddressChange}
 						/>
@@ -51,6 +51,7 @@ const Form = (props) => {
 				<Button
 					form={formRef}
 					uiDispatch={uiDispatch}
+					uiState={uiState}
 					setShowError={setShowError}
 					showError={showError}
 					shipping={shipping}

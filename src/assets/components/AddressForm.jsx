@@ -9,12 +9,11 @@ const AddressForm = (props) => {
 
 	return (
 		<SNewAddress>
-			<EditAddress>
-				<Header
-					showEditAddress={true}
-					uiDispatch={uiDispatch}
-				/>
-			</EditAddress>
+			<Header
+				showEditAddress={true}
+				uiDispatch={uiDispatch}
+				uiState={uiState}
+			/>
 			<Title step={step} />
 			<Form
 				uiState={uiState}

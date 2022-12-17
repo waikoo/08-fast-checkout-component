@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { SAddressContainer } from '../css/styled';
+import useGetAddress from '../hooks/useGetAddress';
 import images from '../images/index_images';
 import newAddressInputData from '../newAddressInputData';
 import { ACTION } from '../uiReducer';
 
 const InputLabel = (props) => {
-	const { onClick, inputRef, type, name, value, onChange, children, checked, method, payment, savedAddress, isPrevAddress, id, savedId, setCheckedValue, savedAddresses, dispatchShipping, uiDispatch, uiState, someRef } = props;
+	const { onClick, inputRef, type, name, value, onChange, children, checked, method, payment, savedAddress, isPrevAddress, id, savedId, setCheckedValue, savedAddresses, dispatchShipping, uiDispatch, uiState, someRef, shipping } = props;
 	// if (inputRef.value === 'home') inputRef.target.checked = true;
 
 	const findIdToModifyState = (targetId) => {
@@ -14,26 +15,47 @@ const InputLabel = (props) => {
 		const selectedAddress = savedAddresses.find((address) => address.id === targetId);
 		if (selectedAddress) {
 			for (const [key, value] of Object.entries(selectedAddress)) {
+				console.warn("IT'S WORKING");
 				dispatchShipping({ type: 'CHANGE_ADDRESS', payload: { state: key, value: value } });
 			}
 		}
 	};
 
 	const editAddressHandler = (e) => {
+		// ! TEST:
+		setCheckedValue(e);
+		// ? same behavior as when clicking it before editing it?
+		// ! ^ END TEST
 		uiDispatch({ type: ACTION.IS_EDITING_ADDRESS });
 		uiDispatch({ type: ACTION.HIDE_PROGRESS_BAR });
-		const targetId = e.target.dataset.id;
-		findIdToModifyState(targetId);
+		findIdToModifyState(e.target.dataset.id);
+		// on clicking the edit button, it should also use the container's id to update state to the id of the address being edited
+		uiDispatch({ type: ACTION.UPDATE_ID_OF_ADDRESS_BEING_EDITED, payload: { value: +e.target.dataset.id } });
+
+		// ? WILL IT WORK?
+
+		if (uiState.idOfAddressBeingEdited !== shipping.address.id) {
+			useGetAddress('savedAddresses').map((savedAddress) => {
+				if (savedAddress.id === uiState.idOfAddressBeingEdited) {
+					for (const [key, value] of Object.entries(savedAddress)) {
+						dispatchShipping({ type: 'CHANGE_ADDRESS', payload: { state: key, value: value } });
+					}
+				}
+			});
+		}
 	};
+
+	// let clickedAddress = useRef(null)
 
 	const selectShippingAddress = (e) => {
+		console.log(e.target); // img
+		console.log(e.currentTarget); // label
+		console.log(+e.target.id[e.target.id.length - 1]);
 		setCheckedValue(e);
-		const id = e.target.id;
-		const targetId = Number(id[id.length - 1]);
-		findIdToModifyState(targetId);
+		findIdToModifyState(+e.target.id[e.target.id.length - 1]);
 	};
 
-	if (isPrevAddress) useEffect(() => someRef.current.click(), []);
+	if (isPrevAddress) useEffect(() => someRef.current?.click(), []);
 
 	return (
 		<div>
@@ -76,7 +98,7 @@ const InputLabel = (props) => {
 									/>
 									<div className='lil-div'>
 										<span className='key'>
-											{input.span}: <span className='value'>{savedAddress[input.state]}</span>
+											{input?.span}: <span className='value'>{savedAddress[input?.state]}</span>
 										</span>
 										<img
 											data-id={savedAddress.id}
