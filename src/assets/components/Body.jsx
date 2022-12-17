@@ -3,6 +3,7 @@ import { INITIAL_STATE, reducer } from '../formReducer';
 import Body1 from './BodyItems/Body1';
 import Body2 from './BodyItems/Body2';
 import Body3 from './BodyItems/Body3';
+import Body4 from './BodyItems/Body4';
 import Button from './Button';
 
 const Body = (props) => {
@@ -52,6 +53,7 @@ const Body = (props) => {
 					handlePaymentChange={handlePaymentChange}
 				/>
 			)}
+			{uiState.body === 4 && <Body4 shipping={shipping} />}
 			<Button
 				uiState={uiState}
 				uiDispatch={uiDispatch}>

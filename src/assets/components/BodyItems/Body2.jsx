@@ -38,14 +38,13 @@ const Body2 = (props) => {
 				<>
 					{savedAddresses?.length > 0 &&
 						savedAddresses.map((savedAddress) => {
-							console.log(isChecked('address' + savedAddress?.id));
 							return (
 								<InputLabel
-									// uiState={uiState}
 									someRef={someRef}
 									uiDispatch={uiDispatch}
 									isPrevAddress={true}
-									key={+savedAddress?.id + 100}
+									isSummary={false}
+									key={savedAddress?.id + 100}
 									htmlFor={savedAddress?.name + savedAddress?.id}
 									type='radio'
 									name='savedAddress'
@@ -62,7 +61,12 @@ const Body2 = (props) => {
 							);
 						})}
 
-					<AddNewAddress uiDispatch={uiDispatch} />
+					<AddNewAddress
+						uiState={uiState}
+						uiDispatch={uiDispatch}
+						shipping={shipping}
+						dispatchShipping={dispatchShipping}
+					/>
 				</>
 			)}
 		</SBody2>

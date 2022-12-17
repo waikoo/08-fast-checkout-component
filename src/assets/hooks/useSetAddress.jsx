@@ -5,7 +5,11 @@ const useSetAddress = (key, newData, update = false) => {
 
 	if (!isArray(newData) && isObject(newData)) {
 		if (isArray(storedData) && !update) {
+			console.log(newData);
+			console.log(newData.id);
+			// ! needs to change
 			newData.id !== storedData.length + 1 ? (newData.id = storedData.length + 1) : null;
+
 			localStorage.setItem(key, JSON.stringify([...storedData, newData]));
 		} else if (storedData === undefined || (storedData === null && !update)) {
 			localStorage.setItem(key, JSON.stringify([newData]));

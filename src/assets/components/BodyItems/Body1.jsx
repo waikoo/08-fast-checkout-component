@@ -21,6 +21,8 @@ const Body1 = (props) => {
 		<SBody1>
 			{body1.map((input) => (
 				<InputLabel
+					isSummary={false}
+					isPrevAddress={false}
 					key={input.id}
 					htmlFor={input.value}
 					inputRef={input.value === 'home' ? homeRef : storeRef}

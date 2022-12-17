@@ -22,6 +22,8 @@ const Body3 = (props) => {
 			{body3.map((input) => (
 				<InputLabel
 					key={input.id}
+					isSummary={false}
+					isPrevAddress={false}
 					htmlFor={input.value}
 					inputRef={input.value === 'credit' ? creditRef : cashRef}
 					type={input.type}

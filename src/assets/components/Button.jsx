@@ -15,13 +15,12 @@ const Button = (props) => {
 	};
 
 	const submitNewAddress = () => {
-		if (!areAllFieldsCompleted() && !uiState.isEditingAddress) setShowError(true);
-		else if (uiState.isEditingAddress) {
-			uiDispatch({ type: ACTION.UPDATE_ID_OF_ADDRESS_BEING_EDITED, payload: { value: null } });
+		if (!areAllFieldsCompleted() && !uiState.addNewAddress) {
+			setShowError(true);
+		} else if (uiState.isEditingAddress) {
 			uiDispatch({ type: ACTION.HAS_FINISHED_EDITING_ADDRESS });
-
 			const updatedAddresses = savedAddresses.map((savedAddress) => {
-				savedAddress.id === uiState.idOfAddressBeingEdited ? { ...savedAddress, ...shipping.address } : savedAddress;
+				return savedAddress.id === uiState.idOfAddressBeingEdited ? { ...savedAddress, ...shipping.address } : savedAddress;
 			});
 			useSetAddress('savedAddresses', updatedAddresses, true);
 		} else {

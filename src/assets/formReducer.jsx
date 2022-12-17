@@ -32,11 +32,13 @@ export const reducer = (shipping, action) => {
 				}
 			};
 		case 'INCREMENT_ADDRESS_ID':
+			console.log('before updating: ' + shipping.address.id);
 			return {
 				...shipping,
 				address: {
 					...shipping.address,
-					id: shipping.address.id + 1
+					id: shipping.address.id ? shipping.address.id + 1 : 1
+					// id: shipping.address.id + 1
 				}
 			};
 		case 'CHANGE_PAYMENT':

@@ -2,7 +2,7 @@ export const INITIAL_UI_STATE = {
 	body: 1,
 	hideProgressBar: false,
 	isEditingAddress: false,
-	idOfAddressBeingEdited: null,
+	idOfAddressBeingEdited: 0,
 	addNewAddress: false,
 	completedSteps: []
 };
@@ -57,6 +57,7 @@ export const uiReducer = (uiState, action) => {
 				isEditingAddress: false
 			};
 		case ACTION.UPDATE_ID_OF_ADDRESS_BEING_EDITED:
+			console.log(typeof action.payload.value, action.payload.value);
 			return {
 				...uiState,
 				idOfAddressBeingEdited: action.payload.value

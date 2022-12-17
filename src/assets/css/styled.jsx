@@ -240,3 +240,25 @@ export const SAddressContainer = styled.div`
 		box-sizing: content-box;
 	} */
 `;
+
+export const SCartItem = styled.div`
+	display: flex;
+	padding: 1rem;
+
+	.cart-info {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		padding-left: 1rem;
+	}
+
+	.cart-info-left,
+	.cart-info-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.cart-info-right {
+		align-items: flex-end;
+	}
+`;
