@@ -13,6 +13,8 @@ const Body3 = (props) => {
 	const cashRef = useRef(null);
 
 	const onChange = (e) => {
+		console.log('method: ' + e.target.dataset.payment); // no payment
+		console.log('value: ' + e.target.value);
 		setCheckedValue(e);
 		handlePaymentChange(e);
 	};
@@ -21,9 +23,9 @@ const Body3 = (props) => {
 		<SBody1>
 			{body3.map((input) => (
 				<InputLabel
-					key={input.id}
 					isSummary={false}
 					isPrevAddress={false}
+					key={input.id}
 					htmlFor={input.value}
 					inputRef={input.value === 'credit' ? creditRef : cashRef}
 					type={input.type}

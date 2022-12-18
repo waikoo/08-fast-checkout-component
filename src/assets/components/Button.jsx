@@ -11,7 +11,8 @@ const Button = (props) => {
 	const savedAddresses = useGetAddress('savedAddresses');
 
 	const submitHandler = () => {
-		uiDispatch({ type: ACTION.NEXT_BODY });
+		if (uiState.isJumpToBody) uiDispatch({ type: ACTION.JUMP_TO_SUMMARY, payload: { value: 4 } });
+		else uiDispatch({ type: ACTION.NEXT_BODY });
 	};
 
 	const submitNewAddress = () => {

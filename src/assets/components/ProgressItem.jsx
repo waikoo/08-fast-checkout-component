@@ -4,7 +4,7 @@ import images from '../images/index_images';
 import colors from '../css/colors';
 
 const ProgressItem = (props) => {
-	const { number, children, isCompleted } = props;
+	const { number, children, isCompleted, editFromSummary } = props;
 	const {
 		progressItem: { bg }
 	} = colors;
@@ -15,7 +15,9 @@ const ProgressItem = (props) => {
 	};
 	return (
 		<SProgressItem>
-			<div className='top'>
+			<div
+				className='top'
+				onClick={() => editFromSummary(number)}>
 				<div
 					className='circle'
 					style={circleStyle}>

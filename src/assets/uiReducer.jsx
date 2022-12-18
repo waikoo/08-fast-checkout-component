@@ -2,6 +2,7 @@ export const INITIAL_UI_STATE = {
 	body: 1,
 	hideProgressBar: false,
 	isEditingAddress: false,
+	isJumpingBody: false,
 	idOfAddressBeingEdited: 0,
 	addNewAddress: false,
 	completedSteps: []
@@ -25,6 +26,20 @@ export const uiReducer = (uiState, action) => {
 				...uiState,
 				body: uiState.body + 1,
 				completedSteps: [...uiState.completedSteps, uiState.body]
+			};
+		case ACTION.JUMP_TO_BODY:
+			return {
+				...uiState,
+				completedSteps: [...uiState.completedSteps, uiState.body],
+				body: action.payload.value,
+				isJumpToBody: true
+			};
+		case ACTION.JUMP_TO_SUMMARY:
+			return {
+				...uiState,
+				completedSteps: [...uiState.completedSteps, uiState.body],
+				body: action.payload.value,
+				isJumpToBody: false
 			};
 		case ACTION.SHOW_PROGRESS_BAR:
 			return {

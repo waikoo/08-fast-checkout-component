@@ -18,7 +18,15 @@ const Title = (props) => {
 
 	const show = (step) => step < 4;
 
-	return <>{show ?? <STitle> {displayTitle(step)}</STitle>}</>;
+	return (
+		<>
+			{show(step) ? (
+				<STitle>
+					<>{displayTitle(step)}</>
+				</STitle>
+			) : null}
+		</>
+	);
 };
 
 export default Title;

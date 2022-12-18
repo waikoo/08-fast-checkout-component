@@ -5,7 +5,8 @@ import ProgressItem from './ProgressItem';
 
 const ProgressBar = (props) => {
 	const {
-		uiState: { hideProgressBar, completedSteps }
+		uiState: { hideProgressBar, completedSteps },
+		editFromSummary
 	} = props;
 
 	// TODO: useReducer here when clicking through the progressItems
@@ -20,25 +21,29 @@ const ProgressBar = (props) => {
 				<SProgressBar>
 					<ProgressItem
 						isCompleted={is1Completed}
-						number={1}>
+						number={1}
+						editFromSummary={editFromSummary}>
 						Shipping
 					</ProgressItem>
 					<Line />
 					<ProgressItem
 						isCompleted={is2Completed}
-						number={2}>
+						number={2}
+						editFromSummary={editFromSummary}>
 						Address
 					</ProgressItem>
 					<Line />
 					<ProgressItem
 						isCompleted={is3Completed}
-						number={3}>
+						number={3}
+						editFromSummary={editFromSummary}>
 						Payment
 					</ProgressItem>
 					<Line />
 					<ProgressItem
 						isCompleted={is4Completed}
-						number={4}>
+						number={4}
+						editFromSummary={editFromSummary}>
 						Confirm
 					</ProgressItem>
 				</SProgressBar>

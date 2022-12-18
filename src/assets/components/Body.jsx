@@ -7,7 +7,7 @@ import Body4 from './BodyItems/Body4';
 import Button from './Button';
 
 const Body = (props) => {
-	const { uiState, step, uiDispatch } = props;
+	const { uiState, step, uiDispatch, editFromSummary } = props;
 
 	const [shipping, dispatchShipping] = useReducer(reducer, INITIAL_STATE);
 
@@ -24,11 +24,13 @@ const Body = (props) => {
 			payload: { name: e.target.dataset.method, value: e.target.value }
 		});
 
-	const handlePaymentChange = (e) =>
+	const handlePaymentChange = (e) => {
+		console.log(e.target.dataset.payment, e.target.value);
 		dispatchShipping({
 			type: 'CHANGE_PAYMENT',
 			payload: { name: e.target.dataset.payment, value: e.target.value }
 		});
+	};
 
 	console.table(uiState);
 	console.table(shipping);
@@ -53,7 +55,13 @@ const Body = (props) => {
 					handlePaymentChange={handlePaymentChange}
 				/>
 			)}
-			{uiState.body === 4 && <Body4 shipping={shipping} />}
+			{uiState.body === 4 && (
+				<Body4
+					shipping={shipping}
+					uiDispatch={uiDispatch}
+					editFromSummary={editFromSummary}
+				/>
+			)}
 			<Button
 				uiState={uiState}
 				uiDispatch={uiDispatch}>

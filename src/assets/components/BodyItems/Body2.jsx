@@ -12,6 +12,7 @@ const Body2 = (props) => {
 	const [isChecked, setCheckedValue] = useChecked('address1');
 
 	const savedAddresses = useGetAddress('savedAddresses');
+	console.table(savedAddresses);
 
 	const onChange = (e) => {
 		setCheckedValue(e);

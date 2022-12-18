@@ -20,6 +20,8 @@ export const SHeader = styled.header`
 		width: 100%;
 		text-align: center;
 		z-index: 0;
+		left: -1rem;
+		padding-left: 1.2rem;
 	}
 `;
 
@@ -260,5 +262,47 @@ export const SCartItem = styled.div`
 	}
 	.cart-info-right {
 		align-items: flex-end;
+	}
+`;
+
+export const SSummaryCon = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	/* padding-top: 0.6rem; */
+	margin-top: 0;
+	font-size: ${fonts.size['14']};
+	font-weight: ${fonts.weight.regular};
+
+	.pairs:first-of-type {
+		margin-top: 0%;
+	}
+	.pairs {
+		margin-top: 0.3rem;
+	}
+
+	.group {
+		position: relative;
+	}
+	.group img {
+		position: absolute;
+		bottom: 0px;
+		right: 15px;
+		padding: 1rem;
+		z-index: 1;
+	}
+
+	/* !!!! */
+	.sum {
+		margin-top: 1rem;
+		background: ${colors.summary.bg};
+		padding: 1rem;
+		margin: 0 1rem;
+	}
+
+	h2 {
+		font-size: ${fonts.size['16']};
+		font-weight: ${fonts.weight.bold};
+		padding-left: 1rem;
 	}
 `;
